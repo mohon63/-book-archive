@@ -6,40 +6,39 @@ const searchBook = () => {
     searchField.value = '';
 
     // error message
-    const errorMessage2 = document.getElementById('error-message2');
     if (searchText == '') {
-        errorMessage2.innerText = "Please write something to display.";
+        document.getElementById('result-found').innerText = `Please write something to display`;
+        document.getElementById('search-result').textContent = '';
     }
     else {
-        errorMessage2.innerText = '';
         const url = `http://openlibrary.org/search.json?q=${searchText}`;
         fetch(url)
             .then(res => res.json())
-            .then(data => displaySearchResult(data.docs));
+            .then(data => {
+                displaySearchResult(data)
+            });
     }
 }
 
-
-
 // display search result
 const displaySearchResult = books => {
+    document.getElementById('result-found').innerText = `search result found:${books.numFound}`;
     const searchResult = document.getElementById('search-result');
 
     // clear search result
     searchResult.textContent = '';
 
     // error message
-    const errorMessage = document.getElementById('error-message');
-    if (books.length === 0) {
-        errorMessage.innerText = "Show no result found.";
+    if (books.docs.length === 0) {
+        document.getElementById('result-found').innerText = `Show no result found.`;
+
         return;
     } else {
-        errorMessage.innerText = '';
     };
 
-    books.forEach(book => {
+    books.docs.forEach(book => {
         const div = document.createElement('div');
-        div.classList.add('col-md-4');
+        div.classList.add('col-md-3');
 
         const publisherName = !book.publisher ? "Publisher Name Is Not Given" : book.publisher[0]
         const authorName = !book.author_name ? "Author Name Is Not Given" : book.author_name[0]

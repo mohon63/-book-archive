@@ -12,7 +12,9 @@
 
 <body class="bg-light">
     <main>
+
         <h2 class="text-center text-success my-3">Search your favorite books</h2>
+
         <section class="container my-2">
             <!-- Input Box -->
             <div class="d-flex justify-content-center mt-3">
@@ -20,17 +22,25 @@
                 <button class="btn btn-dark" id="search-btn" onclick="searchBook()">Search</button>
             </div>
         </section>
-        <div id="error-message" class="text-center text-danger">
+
+        <!-- <div id="result-found">
+        </div> -->
+        <!-- error div -->
+        <!-- <div id="error-message" class="text-center text-danger">
         </div>
         <div id="error-message2" class="text-center text-danger">
-        </div>
+        </div> -->
+        <h3 id="result-found" class="text-center"></h3>
+        <!-- books content -->
         <section class="mt-3">
             <div class="container">
                 <div class="row" id="search-result">
                 </div>
             </div>
         </section>
+
     </main>
+
     <script src="js/main.js"></script>
 </body>
 
